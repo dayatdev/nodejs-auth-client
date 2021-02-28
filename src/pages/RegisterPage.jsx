@@ -1,21 +1,23 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useState, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import { useCookies } from "react-cookie";
 import axios from "axios";
 import googleLogo from "../assets/icons/google.svg";
 import facebookLogo from "../assets/icons/facebook.svg";
 import githubLogo from "../assets/icons/github.svg";
-import { AuthContext } from "../context/authContext";
 
 const RegisterPage = () => {
   const history = useHistory();
+  const [cookies] = useCookies(["userInfo"]);
+
   const emailRef = useRef(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const auth = useContext(AuthContext);
 
-  if (auth.cookies.userInfo) {
+  if (cookies.userInfo && !cookies.userInfo === "undefined") {
+    console.log("cookies", cookies.userInfo);
     history.push("/");
   }
 
