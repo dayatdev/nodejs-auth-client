@@ -5,6 +5,7 @@ Client App for nodejs auth
 ## Requirements
 
 - Nodejs and NPM
+- nodejs-auth-server (https://github.com/dayatdev/nodejs-auth-server)
 
 ## Install
 ```
