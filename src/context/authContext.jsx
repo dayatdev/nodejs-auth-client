@@ -9,19 +9,6 @@ const AuthProvider = ({ children }) => {
 
   const [authData, setAuthData] = useState();
 
-  // const fetchUserData = async () => {
-  //   const res = await axios.get("/api/v1/profile", {
-  //     withCredentials: true,
-  //   });
-
-  //   const user = await res.data;
-
-  //   setAuthData(user);
-
-  //   console.log("authcontext hit", authData);
-  //   setCookie("userInfo", JSON.stringify(user.user));
-  // };
-
   useEffect(() => {
     const fetchUserData = async () => {
       const res = await axios.get("/api/v1/profile", {
@@ -51,16 +38,11 @@ const AuthProvider = ({ children }) => {
     const res = await axios.get("/api/v1/profile", {
       withCredentials: true,
     });
-
     const user = await res.data;
 
-    console.log("authData1", authData);
     setAuthData(user);
-    console.log("authData2", authData);
     setCookie("userInfo", JSON.stringify(user.user));
   };
-
-  console.log("authDataFin", authData);
 
   return (
     <AuthContext.Provider
@@ -69,6 +51,7 @@ const AuthProvider = ({ children }) => {
         logout,
         setAuthUser,
         refetchUser,
+        cookies,
       }}
     >
       {children}

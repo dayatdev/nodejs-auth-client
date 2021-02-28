@@ -9,10 +9,15 @@ import { AuthContext } from "../context/authContext";
 
 const LoginPage = () => {
   const history = useHistory();
+
   const emailRef = useRef(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const auth = useContext(AuthContext);
+
+  if (auth.cookies.userInfo) {
+    history.push("/");
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();

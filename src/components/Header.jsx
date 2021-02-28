@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import { AuthContext } from "../context/authContext";
 
 const Header = () => {
   const history = useHistory();
+  const { pathname } = useLocation();
   const auth = useContext(AuthContext);
 
   const logout = async () => {
@@ -27,7 +28,9 @@ const Header = () => {
           <li>
             <Link
               to="/"
-              className="font-semibold hover:text-indigo-600 transition"
+              className={`font-semibold hover:text-indigo-500 transition ${
+                pathname === "/" ? "text-indigo-600" : ""
+              }`}
             >
               Home
             </Link>
@@ -35,7 +38,9 @@ const Header = () => {
           <li>
             <Link
               to="/profile"
-              className="font-semibold hover:text-indigo-600 transition"
+              className={`font-semibold hover:text-indigo-500 transition ${
+                pathname.startsWith("/profile") ? "text-indigo-600" : ""
+              }`}
             >
               Profile
             </Link>
@@ -44,7 +49,9 @@ const Header = () => {
             <li>
               <Link
                 to="/protected"
-                className="font-semibold hover:text-indigo-600 transition"
+                className={`font-semibold hover:text-indigo-500 transition ${
+                  pathname.startsWith("/protected") ? "text-indigo-600" : ""
+                }`}
               >
                 Secret Page
               </Link>
